@@ -19,7 +19,7 @@ public class UserDynaSqlProvider {
 				if (params.get("user") != null) {
 					User user = (User)params.get("user");
 					if (user.getUsername() != null && !user.getUsername().equals("")) {
-						WHERE(" username LIKE CONCAT ('%', #{user.username}, '%'");
+						WHERE(" username LIKE CONCAT ('%', #{user.username}, '%')");
 					}
 				}
 			}

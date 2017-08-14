@@ -9,7 +9,7 @@ public class Article {
 	private String subject;
 	private String content;
 	private Category category;
-//	private List<Picture> pictures;
+	private List<Picture> pictures;
 	private List<Comment> comments;
 	private Integer visitCount;
 	private Integer commentCount;
@@ -23,6 +23,18 @@ public class Article {
 	public Article() {
 		
 	}
+	
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+
 
 	public Integer getId() {
 		return id;
