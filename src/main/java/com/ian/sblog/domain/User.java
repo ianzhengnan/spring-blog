@@ -8,6 +8,8 @@ public class User {
 	private String displayName;
 	private String realName;
 	private String email;
+	private String qq;
+	private String wechat;
 	
 	
 }
