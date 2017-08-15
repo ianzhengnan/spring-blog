@@ -8,6 +8,7 @@ public class Picture {
 
 	private Integer id;
 	private Blob picture;
+	private Blob thumbnail;
 	private String mimeType;
 	private Long fileSize;
 	private String fileName;
@@ -18,6 +19,14 @@ public class Picture {
 	
 	public Picture() {
 		
+	}
+	
+	public Blob getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(Blob thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public Integer getId() {

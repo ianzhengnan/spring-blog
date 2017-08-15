@@ -31,6 +31,7 @@ public interface CommentDao {
 	void save(Comment comment);
 	
 	@Select("select count(*) from " + COMMENTTABLE + " where article_id = #{articleId}")
-	List<Comment> count(Integer articleId);
+	Integer count(Integer articleId);
+	
 	
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-08-08 21:05:45
+Date: 2017-08-15 16:51:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -92,11 +92,19 @@ DROP TABLE IF EXISTS `bg_picture`;
 CREATE TABLE `bg_picture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `picture` mediumblob,
-  `article_id` int(11) NOT NULL,
+  `thumbnail` mediumblob,
+  `mime_type` varchar(20) DEFAULT NULL,
+  `file_size` bigint(20) DEFAULT NULL,
+  `file_name` varchar(100) DEFAULT NULL,
+  `file_url` varchar(300) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `article_id` int(11) DEFAULT NULL,
   `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `article_id` (`article_id`) USING HASH,
-  CONSTRAINT `bg_picture_article` FOREIGN KEY (`article_id`) REFERENCES `bg_article` (`id`) ON DELETE CASCADE
+  KEY `bg_picture_user` (`user_id`),
+  CONSTRAINT `bg_picture_article` FOREIGN KEY (`article_id`) REFERENCES `bg_article` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `bg_picture_user` FOREIGN KEY (`user_id`) REFERENCES `bg_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -143,6 +151,9 @@ CREATE TABLE `bg_user` (
   `token` varchar(50) DEFAULT NULL,
   `inform_type` tinyint(4) DEFAULT '1' COMMENT 'email',
   `status` varchar(20) DEFAULT NULL,
+  `blog_title` varchar(100) DEFAULT NULL,
+  `blog_subtitle` varchar(200) DEFAULT NULL,
+  `blog_theme` varchar(100) DEFAULT NULL,
   `last_logon_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `last_modify_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
