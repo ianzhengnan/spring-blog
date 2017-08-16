@@ -7,4 +7,10 @@ public class FacadeServiceTest {
 	public static void main(String[] args) {
 		
 	}
+	
+	void testFacadeServcie() {
+//		facadeService.
+	}
+	
 }
+
