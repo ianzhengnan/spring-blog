@@ -27,11 +27,15 @@ public class ArticleDynaSqlProvider {
 					if(article.getStatus() != null && !article.getStatus().equals("")) {
 						WHERE(" status = #{article.status}");
 					}
+					if(article.getCreateBy() != null) {
+						WHERE(" user_id = #{createBy.id}");
+					}
 				}
 			}
 		}.toString();
 		
 		if (params.get("orderBy") != null) {
+			
 			sql += " order by " + (String)params.get("orderBy");
 		}
 		
