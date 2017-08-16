@@ -10,7 +10,7 @@ import static com.ian.sblog.util.SBlogConstants.*;
 
 public class CommentDynaSqlProvider {
 
-	public String selectByParams(Map<String, Object> params) {
+	public String selectWithParams(Map<String, Object> params) {
 		String sql = new SQL() {
 			{
 				SELECT("*");
@@ -29,6 +29,55 @@ public class CommentDynaSqlProvider {
 			sql += " limit #{pageModel.firstLimitParam}, #{pageModel.pageSize}";
 		}
 		
+		return sql;
+	}
+	
+	public String update(Comment comment) {
+		String sql = new SQL() {
+			{
+				UPDATE(COMMENTTABLE);
+				if (comment.getContent() != null && !comment.getContent().equals("")) {
+					SET("content = #{content}");
+				}
+				if (comment.getArticle() != null){
+					SET("article_id = #{article.id}");
+				}
+				if (comment.getCreateBy() != null){
+					SET("user_id = #{createBy.id}");
+				}
+				if (comment.getLastModifyAt() != null){
+					SET("last_modify_at = #{lastModifyAt}");
+				}
+				if (comment.getReplyComment() != null)	{
+					SET("reply_comment_id = #{replyComment.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+		return sql;
+	}
+	
+	public String save(Comment comment) {
+		String sql = new SQL() {
+			{
+				INSERT_INTO(COMMENTTABLE);
+				if (comment.getContent() != null && !comment.getContent().equals("")) {
+					VALUES("content", "#{content}");
+				}
+				if (comment.getArticle() != null){
+					VALUES("article_id", "#{article.id}");
+				}
+				if (comment.getCreateBy() != null){
+					VALUES("user_id", "#{createBy.id}");
+				}
+				if (comment.getLastModifyAt() != null){
+					VALUES("last_modify_at", "#{lastModifyAt}");
+				}
+				if (comment.getReplyComment() != null)	{
+					VALUES("reply_comment_id", "#{replyComment.id}");
+				}
+			}
+		}.toString();
 		return sql;
 	}
 }

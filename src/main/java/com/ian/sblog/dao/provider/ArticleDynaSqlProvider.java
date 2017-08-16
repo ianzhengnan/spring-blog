@@ -10,7 +10,7 @@ import static com.ian.sblog.util.SBlogConstants.ARTICLETABLE;
 
 public class ArticleDynaSqlProvider {
 
-	public String selectByParams(Map<String, Object> params) {
+	public String selectWithParams(Map<String, Object> params) {
 		
 		String sql = new SQL() {
 			{
@@ -41,4 +41,85 @@ public class ArticleDynaSqlProvider {
 		
 		return sql;
 	}
+	
+	public String updateArticle(Article article) {
+		String sql = new SQL() {
+			{
+				UPDATE(ARTICLETABLE);
+				if (article.getSubject() != null && !article.getSubject().equals("")) {
+					SET(" subject = #{subject}");
+				}
+				if (article.getContent() != null && !article.getContent().equals("")) {
+					SET(" content = #{content}");
+				}
+				if (article.getCategory() != null){
+					SET(" category_id = #{category.id}");
+				}
+				if (article.getCreateBy() != null) {
+					SET(" user_id = #{createBy.id}");
+				}
+				if (article.getVisitCount() != null && !article.getVisitCount().equals(0)) {
+					SET(" visit_count = #{visitCount}");
+				}
+				if (article.getCommentCount() != null && !article.getCommentCount().equals(0)) {
+					SET(" comment_count = #{commentCount}");
+				}
+				if (article.getShareCount() != null && !article.getShareCount().equals(0)) {
+					SET(" shared_count = #{sharedCount}");
+				}
+				if (article.getStarCount() != null && !article.getStarCount().equals(0)) {
+					SET(" stared_count = #{sharCount}");
+				}
+				if (article.getStatus() != null && !article.getStatus().equals("")) {
+					SET(" status = #{status}");
+				}
+				if (article.getLastModifyAt() != null) {
+					SET(" last_modify_at = #{lastModifyAt}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+		return sql;
+	}
+	
+	public String save(Article article) {
+		String sql = new SQL() {
+			{
+				INSERT_INTO(ARTICLETABLE);
+				if (article.getSubject() != null && !article.getSubject().equals("")) {
+					VALUES(" subject", "#{subject}");
+				}
+				if (article.getContent() != null && !article.getContent().equals("")) {
+					VALUES(" content", "#{content}");
+				}
+				if (article.getCategory() != null){
+					VALUES(" category_id", "#{category.id}");
+				}
+				if (article.getCreateBy() != null) {
+					VALUES(" user_id", "#{createBy.id}");
+				}
+				if (article.getVisitCount() != null && !article.getVisitCount().equals(0)) {
+					VALUES(" visit_count", "#{visitCount}");
+				}
+				if (article.getCommentCount() != null && !article.getCommentCount().equals(0)) {
+					VALUES(" comment_count", "#{commentCount}");
+				}
+				if (article.getShareCount() != null && !article.getShareCount().equals(0)) {
+					VALUES(" shared_count", "#{sharedCount}");
+				}
+				if (article.getStarCount() != null && !article.getStarCount().equals(0)) {
+					VALUES(" stared_count", "#{sharCount}");
+				}
+				if (article.getStatus() != null && !article.getStatus().equals("")) {
+					VALUES(" status", "#{status}");
+				}
+				if (article.getLastModifyAt() != null) {
+					VALUES(" last_modify_at", "#{lastModifyAt}");
+				}
+			}
+		}.toString();
+		return sql;
+	}
+	
+
 }

@@ -39,7 +39,7 @@ public interface ArticleDao {
 	 * @param params
 	 * @return
 	 */
-	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "selectWithParam")
+	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "selectWithParams")
 	List<Article> selectByParams(Map<String, Object> params);
 	
 	/**
@@ -61,8 +61,8 @@ public interface ArticleDao {
 	 * @param params
 	 * @return
 	 */
-	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "count")
-	Integer count(Map<String, Object> params);
+	@Select("select count(*) from " + ARTICLETABLE + " where create_by = #{userId}")
+	Integer count(Integer userId);
 	
 	@Insert("insert into " + STAREDARTICLETABLE + "(article_id, user_id, create_at) values(#{articleId}, #{userId}, #{now})")
 	void setStar(Integer articleId, Integer userId, Date now);

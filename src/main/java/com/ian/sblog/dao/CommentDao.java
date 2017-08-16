@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -19,15 +19,13 @@ public interface CommentDao {
 	@Delete("delete from " + COMMENTTABLE + " where id = #{id}")
 	void removeById(Integer id);
 	
-	@SelectProvider(type = CommentDynaSqlProvider.class, method = "selectWithParam")
+	@SelectProvider(type = CommentDynaSqlProvider.class, method = "selectWithParams")
 	List<Comment> selectByParams(Map<String, Object> params);
 	
 	@UpdateProvider(type = CommentDynaSqlProvider.class, method = "update")
 	void updateComment(Comment comment);
 	
-	@Insert("insert into " + COMMENTTABLE + "(content, article_id, reply_comment_id, user_id, create_at, last_modify_at) "
-			+ "values(#{comment.content}, #{comment.article.id}, #{comment.replyComment.id}, #{comment.createBy.id}, "
-			+ "#{comment.createAt}, #{comment.lastModifyAt})")
+	@InsertProvider(type = CommentDynaSqlProvider.class, method = "save")
 	void save(Comment comment);
 	
 	@Select("select count(*) from " + COMMENTTABLE + " where article_id = #{articleId}")
