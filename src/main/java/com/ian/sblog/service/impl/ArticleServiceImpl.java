@@ -3,36 +3,46 @@ package com.ian.sblog.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ian.sblog.dao.ArticleDao;
 import com.ian.sblog.domain.Article;
 import com.ian.sblog.service.ArticleService;
 
+@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
+	private static final Logger log = LoggerFactory.getLogger(ArticleServiceImpl.class);
+	
+	@Autowired
+	private ArticleDao articleDao;
+	
 	@Override
 	public void createArticle(Article article) {
-		// TODO Auto-generated method stub
-
+		log.debug("ArticleServiceImpl >> create an article");
+		articleDao.save(article);
 	}
 
 	@Override
 	public void removeArticle(Integer id) {
-		// TODO Auto-generated method stub
-
+		articleDao.deleteById(id);
 	}
 
 	@Override
 	public void updateArticle(Article article) {
-		// TODO Auto-generated method stub
-
+		articleDao.updateArticle(article);
 	}
 
 	@Override
 	public List<Article> getArticles(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+		return articleDao.selectByParams(params);
 	}
 
 }

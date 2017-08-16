@@ -9,9 +9,9 @@ import com.ian.sblog.domain.User;
 
 public interface UserService {
 
-	void logon(@Param("username") String username, @Param("password") String password);
+	User logon(@Param("username") String username, @Param("password") String password);
 	
-	User register(User user);
+	void register(User user);
 	
 	void removeUser(Integer id);
 	
