@@ -17,7 +17,7 @@ import com.ian.sblog.service.ArticleService;
 
 @Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
 @Service
-public class ArticleServiceImpl implements ArticleService {
+public class ArticleServiceImpl implements ArticleService{
 
 	private static final Logger log = LoggerFactory.getLogger(ArticleServiceImpl.class);
 	

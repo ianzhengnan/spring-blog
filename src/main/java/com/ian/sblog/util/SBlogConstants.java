@@ -14,7 +14,7 @@ public interface SBlogConstants {
 //	// 登录
 //	String LOGIN = "loginForm";
 //	// 用户的session对象
-//	String USER_SESSION = "user_session";
+	String USER_SESSION = "user_session";
 //	// 默认每页4条数据
 //	int PAGE_DEFAULT_SIZE = 4;
 }
