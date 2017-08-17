@@ -19,6 +19,13 @@ public class UserDaoTest extends BaseDaoTest{
 		User user = userDao.selectByUsernameAndPassword("tony", "tony1234");
 		assertNull("不存在用户tony", user);
 		
+		// 创建测试数据
+		user = new User();
+		user.setUsername("jan");
+		user.setPassword("jan1234");
+		userDao.save(user);
+		
+		// 测试用户是否存在
 		user = userDao.selectByUsernameAndPassword("jan", "jan1234");
 		assertNotNull("Jan用户存在", user);
 		
@@ -42,6 +49,9 @@ public class UserDaoTest extends BaseDaoTest{
 		userDao.deleteById(tester.getId());
 		tester = userDao.selectByUsernameAndPassword("kaka", "kaka123");
 		assertNull("kaka用户不存在", tester);
+		
+		//删除测试数据
+		userDao.deleteById(user.getId());
 	}
 	
 	
