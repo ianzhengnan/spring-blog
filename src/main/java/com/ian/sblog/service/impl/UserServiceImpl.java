@@ -34,6 +34,16 @@ public class UserServiceImpl implements UserService{
 	public void register(User user) {
 		userDao.save(user);
 	}
+	
+	@Override
+	public boolean checkUsername(User user) {
+		User exitUser = userDao.selectByUsername(user.getUsername());
+		if (exitUser != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	@Override
 	public void removeUser(Integer id) {

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,9 +54,25 @@ public class PassportController extends BaseController{
 		if(httpSession.getAttribute(SBlogConstants.USER_SESSION) != null) {
 			httpSession.removeAttribute(SBlogConstants.USER_SESSION);			
 		}
-		return "redirect:/account/login";
+		return "redirect:" + SBlogConstants.LOGIN;
 	}
 	
-	
+	@RequestMapping(value = "/signup")
+	public ModelAndView signup(String show, ModelAndView mv, @ModelAttribute User user, HttpSession httpSession) {
+		
+		if (show.equals("1")) {
+			mv.setViewName("user/signup");
+		}else {
+			if (!us.checkUsername(user)) {
+				us.register(user);
+				httpSession.setAttribute(SBlogConstants.USER_SESSION, user);
+				mv.setViewName("redirect:/account/main");
+			}else {
+				mv.addObject("message", "用户名已经存在");
+				mv.setViewName("user/signup");
+			}
+		}
+		return mv;
+	}
 	
 }

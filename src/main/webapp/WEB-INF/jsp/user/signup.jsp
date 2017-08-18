@@ -5,10 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${ctx}/js/jquery-3.2.1.min.js"></script>
-<title>Login</title>
+<title>Signup</title>
 <script>
-
-	function submitForm(){
+	function register(){
 		var username = $("#username").val();
 	 	var password = $("#password").val();
 		
@@ -25,14 +24,13 @@
 	   }else{
 		   return true;
 	   }
-	} 
-	
-	
+	}
 </script>
-
 </head>
 <body>
-<form id="loginForm" action="login" method="post" onsubmit="return submitForm()">
+
+<form action="signup" method="post" onsubmit="return register()">
+	<input type="hidden" name="show" value="0">
 	<c:choose>
 		<c:when test="${requestScope.message != null}">
 			<span><font color="red">${requestScope.message}</font></span><br>
@@ -40,9 +38,9 @@
 	</c:choose>
 	User name: <input id="username" type="text" name="username"><br>
 	Password: <input id="password" type="password" name="password"><br>
-	<button id="login-submit-btn" type="submit">Submit</button>
+	email: <input id="email" type="text" name="email"><br>
+	<button id="signup-submit-btn" type="submit">Signup</button>
 </form>
-<br>
-<a href="${ctx }/account/signup?show=1">Signup</a>
+
 </body>
 </html>

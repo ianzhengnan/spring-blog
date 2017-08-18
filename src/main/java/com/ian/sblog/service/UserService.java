@@ -13,6 +13,8 @@ public interface UserService {
 	
 	void register(User user);
 	
+	public boolean checkUsername(User user);
+	
 	void removeUser(Integer id);
 	
 	void updateUser(User user);

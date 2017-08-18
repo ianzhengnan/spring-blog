@@ -12,7 +12,7 @@ public interface SBlogConstants {
 	String STAREDARTICLETABLE = "bg_stared_article";
 	
 //	// 登录
-//	String LOGIN = "loginForm";
+	String LOGIN = "/account/login";
 //	// 用户的session对象
 	String USER_SESSION = "user_session";
 //	// 默认每页4条数据
