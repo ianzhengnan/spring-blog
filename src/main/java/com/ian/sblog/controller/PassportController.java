@@ -2,7 +2,6 @@ package com.ian.sblog.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ian.sblog.domain.User;
-import com.ian.sblog.service.UserService;
 import com.ian.sblog.util.SBlogConstants;
 
 @Controller
 @RequestMapping("/account")
-public class PassportController{
+public class PassportController extends BaseController{
 
-	
-	@Autowired
-	protected UserService us;
-	
 	@RequestMapping("/login") // 只有一个参数时候，可以简写省去value = ""
 	public ModelAndView login(@RequestParam(value = "username", required = false) String username, 
 							@RequestParam(value = "password", required = false) String password,
