@@ -7,6 +7,6 @@
 <title>Home page</title>
 </head>
 <body>
-
+Welcome, <span>${sessionScope.user_session.username}</span><span><a href="${ctx }/account/logout">logout</a></span>
 </body>
 </html>
