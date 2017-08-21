@@ -28,7 +28,7 @@ public class ArticleDynaSqlProvider {
 						WHERE(" status = #{article.status}");
 					}
 					if(article.getCreateBy() != null) {
-						WHERE(" user_id = #{createBy.id}");
+						WHERE(" user_id = #{article.createBy.id}");
 					}
 				}
 			}

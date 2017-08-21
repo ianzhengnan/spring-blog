@@ -44,5 +44,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<Article> getArticles(Map<String, Object> params) {
 		return articleDao.selectByParams(params);
 	}
+	
+	@Override
+	public Article getArticleById(Integer id) {
+		return articleDao.selectById(id);
+	}
 
 }

@@ -7,6 +7,7 @@
 <title>Home page</title>
 </head>
 <body>
-Welcome, <span>${sessionScope.user_session.username}</span><span><a href="${ctx }/account/logout">logout</a></span>
+Welcome, <span>${sessionScope.user_session.username}</span><span><a href="${ctx }/account/logout">logout</a></span><br>
+<a href="${ctx}/${sessionScope.user_session.username}/article">所有文章</a>
 </body>
 </html>
