@@ -64,6 +64,9 @@ public interface ArticleDao {
 	@Select("select count(*) from " + ARTICLETABLE + " where create_by = #{userId}")
 	Integer count(Integer userId);
 	
+	@Select("select * from " + ARTICLETABLE + " where user_id = #{userId} order by id desc limit 1")
+	Integer getLastInsertArticleID(Integer userId);
+	
 	@Insert("insert into " + STAREDARTICLETABLE + "(article_id, user_id, create_at) values(#{articleId}, #{userId}, #{now})")
 	void setStar(Integer articleId, Integer userId, Date now);
 	

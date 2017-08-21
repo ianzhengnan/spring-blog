@@ -28,6 +28,8 @@ public class ArticleServiceImpl implements ArticleService{
 	public void createArticle(Article article) {
 		log.debug("ArticleServiceImpl >> create an article");
 		articleDao.save(article);
+		Integer id = articleDao.getLastInsertArticleID(article.getCreateBy().getId());
+		article.setId(id);
 	}
 
 	@Override

@@ -21,12 +21,12 @@ public class UserDaoTest extends BaseDaoTest{
 		
 		// 创建测试数据
 		user = new User();
-		user.setUsername("jan");
-		user.setPassword("jan1234");
+		user.setUsername("tester");
+		user.setPassword("tester1234");
 		userDao.save(user);
 		
 		// 测试用户是否存在
-		user = userDao.selectByUsernameAndPassword("jan", "jan1234");
+		user = userDao.selectByUsernameAndPassword("tester", "tester1234");
 		assertNotNull("Jan用户存在", user);
 		
 		// 测试新增
