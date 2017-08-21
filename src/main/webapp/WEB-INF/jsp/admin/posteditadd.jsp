@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增文章</title>
+<script type="text/javascript" src="${ctx }/js/jquery.1.4.4.min.js"></script>
+<script type="text/javascript" src="/js/xheditor.min.js"></script>
+<script type="text/javascript" src="/js/xheditor_lang/zh-cn.js"></script>
 <script>
 	function submitForm(){
 		return true;
