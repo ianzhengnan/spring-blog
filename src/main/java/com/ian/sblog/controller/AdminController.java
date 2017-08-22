@@ -52,9 +52,6 @@ public class AdminController extends BaseController{
 		return mv;
 	}
 	
-	@PostMapping("/upload")
-	public String uploadFiles(){
-		return "";
-	}
+
 	
 }
