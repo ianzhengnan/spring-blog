@@ -9,6 +9,9 @@
 <body>
 <article>
 	<h1>${requestScope.article.subject}</h1>
+	<p><span>${requestScope.article.createAt}</span>&nbsp;&nbsp;
+	<span>阅读：${requestScope.article.visitCount == null ? 0 : requestScope.article.visitCount}</span>&nbsp;&nbsp;
+	<span>评论：${requestScope.article.commentCount == null ? 0 : requestScope.article.commentCount}</span></p>
 	<p>${requestScope.article.content}</p>
 </article>
 </body>

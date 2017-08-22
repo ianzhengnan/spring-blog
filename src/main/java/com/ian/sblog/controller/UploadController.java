@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UploadController extends BaseController {
 
+	/**
+	 * Content-type:application/octet-stream 的上传方式，如果是multipart方式与此不同，要简单许多
+	 * 这里是为了适应xheditor
+	 * @param request
+	 * @return json object {err:"", msg:"/upload/filename.jpg"}
+	 * @throws Exception
+	 */
 	@PostMapping("/upload")
 	@ResponseBody
 	public Object uploadFile(HttpServletRequest request) throws Exception {

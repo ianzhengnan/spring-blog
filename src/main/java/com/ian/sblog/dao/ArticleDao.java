@@ -3,6 +3,8 @@ package com.ian.sblog.dao;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -40,6 +42,9 @@ public interface ArticleDao {
 	 * @return
 	 */
 	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "selectWithParams")
+	@Results(value = {
+			@Result(property = "createAt", column = "create_at")
+	})
 	List<Article> selectByParams(Map<String, Object> params);
 	
 	/**

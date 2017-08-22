@@ -34,11 +34,8 @@ public class ArticleDynaSqlProvider {
 			}
 		}.toString();
 		
-		if (params.get("orderBy") != null) {
+		sql += " order by create_at desc";
 			
-			sql += " order by " + (String)params.get("orderBy");
-		}
-		
 		if (params.get("pageModel") != null) {
 			sql += " limit #{pageModel.firstLimitParam}, #{pageModel.pageSize}";
 		}

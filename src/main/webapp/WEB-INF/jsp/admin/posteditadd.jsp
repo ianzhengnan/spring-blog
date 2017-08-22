@@ -31,11 +31,15 @@
 </head>
 <body>
 	<form action="postedit" method="post" onsubmit="return submitForm()">
-		<input id="ispub" type="hidden" name="isPub" value="2">
+		类别：<select name="category_id">
+			<c:forEach items="${categories}" var="category">
+				<option value="${category.id}">${category.title}</option>
+			</c:forEach>
+		</select>&nbsp;&nbsp;
+		主题：<input id="ispub" type="hidden" name="isPub" value="2">
 		<input type="hidden" name="id" value="${article.id}">
-		Subject: <br>
-		<input type="text" name="subject" value="${article.subject}"><br>
-		Content: <br>
+		<input type="text" name="subject" value="${article.subject}"  width="50%"><br>
+		内容：<br>
 		<textarea id="content" name="content" class="xheditor{upLinkUrl:'/upload',upLinkExt:'zip,rar,txt',upImgUrl:'/upload',upImgExt:'jpg, jpeg,png,gif'}" rows="20" cols="150">${article.content}</textarea><br>
 		<input type="submit" value="Save" id="saveBtn" onclick="onSaveBtnPressed()">&nbsp;&nbsp;
 		<input type="submit" value="Post" id="postBtn" onclick="onPostBtnPressed()">
