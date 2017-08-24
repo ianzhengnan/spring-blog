@@ -43,7 +43,9 @@ public interface ArticleDao {
 	 */
 	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "selectWithParams")
 	@Results(value = {
-			@Result(property = "createAt", column = "create_at")
+			@Result(property = "createAt", column = "create_at"),
+			@Result(property = "visitCount", column = "visit_count"),
+			@Result(property = "commentCount", column = "comment_count")
 	})
 	List<Article> selectByParams(Map<String, Object> params);
 	
