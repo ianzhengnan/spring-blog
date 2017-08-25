@@ -12,8 +12,8 @@
 <c:forEach items="${requestScope.articles}" var="art" varStatus="stat">
 	<li>
 		<span><a href="${ctx}/${sessionScope.user_session.username}/article/${art.id}">${art.subject}</a></span> &nbsp;&nbsp;
-		<span>${art.createAt == null ? "空" : art.createAt}</span>&nbsp;&nbsp;<span>阅读：${art.visitCount == null ? 0 : art.visitCount}</span>&nbsp;&nbsp;<span>评论：${art.commentCount == null ? 0 : art.commentCount}</span>
-		<%-- <p>${art.content}</p> --%>
+		<span>${art.createAt == null ? "空" : art.lastModifyAt}</span>&nbsp;&nbsp;<span>阅读：${art.visitCount == null ? 0 : art.visitCount}</span>&nbsp;&nbsp;<span>评论：${art.commentCount == null ? 0 : art.commentCount}</span>
+		<span style="text-align: right;"><a href="${ctx}/postedit?id=${art.id}">编辑</a>|<a href="${ctx}/del?id=${art.id}">删除</a>|<a href="${ctx}/top?id=${art.id}">置顶</a></span>
 	</li>
 </c:forEach>
 </ul>

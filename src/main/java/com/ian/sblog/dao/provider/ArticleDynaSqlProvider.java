@@ -34,7 +34,7 @@ public class ArticleDynaSqlProvider {
 			}
 		}.toString();
 		
-		sql += " order by create_at desc";
+		sql += " order by last_modify_at desc";
 			
 		if (params.get("pageModel") != null) {
 			sql += " limit #{pageModel.firstLimitParam}, #{pageModel.pageSize}";

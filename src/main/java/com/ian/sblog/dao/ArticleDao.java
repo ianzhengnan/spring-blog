@@ -27,6 +27,17 @@ public interface ArticleDao {
 	 * @return
 	 */
 	@Select("select * from " + ARTICLETABLE + " where id = #{id}")
+	@Results(value = {
+			@Result(property = "createAt", column = "create_at"),
+			@Result(property = "visitCount", column = "visit_count"),
+			@Result(property = "commentCount", column = "comment_count"),
+			@Result(property = "createBy.id", column = "user_id"),
+			@Result(property = "sharedCount", column = "shared_count"),
+			@Result(property = "staredCount", column = "stared_count"),
+			@Result(property = "lastModifyAt", column = "last_modify_at"),
+			@Result(property = "category.id", column = "category_id")
+			
+	})
 	Article selectById(Integer id);
 	
 	/**
@@ -45,7 +56,13 @@ public interface ArticleDao {
 	@Results(value = {
 			@Result(property = "createAt", column = "create_at"),
 			@Result(property = "visitCount", column = "visit_count"),
-			@Result(property = "commentCount", column = "comment_count")
+			@Result(property = "commentCount", column = "comment_count"),
+			@Result(property = "createBy.id", column = "user_id"),
+			@Result(property = "sharedCount", column = "shared_count"),
+			@Result(property = "staredCount", column = "stared_count"),
+			@Result(property = "lastModifyAt", column = "last_modify_at"),
+			@Result(property = "category.id", column = "category_id")
+			
 	})
 	List<Article> selectByParams(Map<String, Object> params);
 	
