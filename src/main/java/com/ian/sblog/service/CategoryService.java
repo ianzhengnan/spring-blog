@@ -12,5 +12,7 @@ public interface CategoryService {
 	
 	void deleteCategory(Integer id);
 	
+	Category getCategoryById(String id);
+	
 	List<Category> getCategoriesByUser(Integer id);
 }

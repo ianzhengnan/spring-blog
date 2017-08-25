@@ -75,7 +75,7 @@
 </script>
 </head>
 <body>
-	<form action="postedit" method="post" onsubmit="return submitForm()">
+	<%-- <form action="postedit" method="post" onsubmit="return submitForm()">
 		类别：<select name="category_id">
 			<c:forEach items="${categories}" var="category">
 				<option value="${category.id}">${category.title}</option>
@@ -83,11 +83,25 @@
 		</select>&nbsp;&nbsp;
 		主题：<input id="ispub" type="hidden" name="isPub" value="2">
 		<input type="hidden" name="id" value="${article.id}">
-		<input type="text" name="subject" value="${article.subject}"  width="50%"><br>
+		<input type="text" name="subject" value="${article.subject}" width="50%"><form:errors path="subject" cssStyle="color: red"/><br>
 		内容：<br>
-		<textarea id="content" name="content" rows="20" cols="150">${article.content}</textarea><br>
+		<textarea id="content" name="content" rows="20" cols="150">${article.content}</textarea><form:errors path="content" cssStyle="color: red"/><br>
 		<input type="submit" value="Save" id="saveBtn" onclick="onSaveBtnPressed()">&nbsp;&nbsp;
 		<input type="submit" value="Post" id="postBtn" onclick="onPostBtnPressed()">
-	</form>
+	</form> --%>
+	
+	
+	<form:form modelAttribute="article" method="post" action="postedit">
+		<form:select path="category" items="${categories}" itemLabel="title" itemValue="id"/>&nbsp;&nbsp;
+		主题：<input id="ispub" type="hidden" name="isPub" value="2">
+		<form:hidden path="id" />
+		<form:input path="subject" /><form:errors path="subject" cssStyle="color:red"/><br>
+		内容:<br>
+		<form:textarea path="content" rows="20" cols="150" /><form:errors path="content" cssStyle="color: red"/><br>
+		
+		<input type="submit" value="Save" id="saveBtn" onclick="onSaveBtnPressed()">&nbsp;&nbsp;
+		<input type="submit" value="Post" id="postBtn" onclick="onPostBtnPressed()">
+	</form:form>
+	
 </body>
 </html>

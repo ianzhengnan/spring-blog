@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +19,17 @@ import com.ian.sblog.domain.Article;
 import com.ian.sblog.domain.Category;
 import com.ian.sblog.domain.User;
 import com.ian.sblog.util.SBlogConstants;
+import com.ian.sblog.validator.ArticleValidator;
 
 @Controller
 public class AdminController extends BaseController{
 
+	@Autowired
+	@Qualifier("articleValidator") // what is useful?
+	private ArticleValidator articleValidator;
+	
 	@GetMapping("/postedit")
-	public String showPostEdit(Model model, HttpSession httpSession) {
+	public String showPostEdit(Model model, HttpSession httpSession, @ModelAttribute Article article) {
 		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
 		List<Category> categories = cats.getCategoriesByUser(user.getId());
 		model.addAttribute("categories", categories);
@@ -29,16 +37,23 @@ public class AdminController extends BaseController{
 	}
 	
 	@PostMapping("/postedit")
-	public ModelAndView postArticle(String isPub, Integer category_id, @ModelAttribute Article article, 
-			ModelAndView mv, HttpSession httpSession) {
+	public ModelAndView postArticle(String isPub, @ModelAttribute Article article, 
+			 HttpSession httpSession, Errors errors) {
 		
-		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
+		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);		
+		ModelAndView mv = new ModelAndView();
+		List<Category> categories = cats.getCategoriesByUser(user.getId());
+		mv.addObject("categories", categories);
+		
+		articleValidator.validate(article, errors);
+		
+		if (errors.hasErrors()) {
+			mv.setViewName("admin/posteditadd");
+			return mv;
+		}
 		
 		if (article.getId() == null) {
 			article.setCreateBy(user);
-			Category category = new Category();
-			category.setId(category_id);
-			article.setCategory(category);
 			arts.createArticle(article);
 		}
 		

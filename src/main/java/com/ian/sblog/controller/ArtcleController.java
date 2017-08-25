@@ -30,6 +30,7 @@ public class ArtcleController extends BaseController{
 		// get user from session
 		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
 		article.setCreateBy(user);
+		article.setStatus("publish");
 		params.put("article", article);
 		articles = arts.getArticles(params);
 		
