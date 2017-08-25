@@ -9,6 +9,7 @@ public class Article {
 	private String subject;
 	private String content;
 	private Category category;
+	private String top;
 	private List<Picture> pictures;
 	private List<Comment> comments;
 	private Integer visitCount;
@@ -28,13 +29,9 @@ public class Article {
 		return pictures;
 	}
 
-
-
 	public void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -138,6 +135,14 @@ public class Article {
 
 	public void setCreateBy(User createBy) {
 		this.createBy = createBy;
+	}
+
+	public String getTop() {
+		return top;
+	}
+
+	public void setTop(String top) {
+		this.top = top;
 	}
 	
 	

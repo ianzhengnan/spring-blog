@@ -34,7 +34,7 @@ public class ArticleDynaSqlProvider {
 			}
 		}.toString();
 		
-		sql += " order by last_modify_at desc";
+		sql += " order by top desc, last_modify_at desc";
 			
 		if (params.get("pageModel") != null) {
 			sql += " limit #{pageModel.firstLimitParam}, #{pageModel.pageSize}";
@@ -58,6 +58,9 @@ public class ArticleDynaSqlProvider {
 				}
 				if (article.getCreateBy() != null) {
 					SET(" user_id = #{createBy.id}");
+				}
+				if (article.getTop() != null) {
+					SET(" top = #{top}");
 				}
 				if (article.getVisitCount() != null && !article.getVisitCount().equals(0)) {
 					SET(" visit_count = #{visitCount}");
@@ -95,6 +98,9 @@ public class ArticleDynaSqlProvider {
 				}
 				if (article.getCategory() != null){
 					VALUES(" category_id", "#{category.id}");
+				}
+				if (article.getTop() != null){
+					VALUES(" top", "#{top}");
 				}
 				if (article.getCreateBy() != null) {
 					VALUES(" user_id", "#{createBy.id}");

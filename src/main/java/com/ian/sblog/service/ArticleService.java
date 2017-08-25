@@ -21,5 +21,5 @@ public interface ArticleService {
 	List<Article> getArticles(Map<String, Object> params);
 	
 	Article getArticleById(Integer id);
-	
+		
 }

@@ -29,16 +29,20 @@ public class AdminController extends BaseController{
 	private ArticleValidator articleValidator;
 	
 	@GetMapping("/postedit")
-	public String showPostEdit(Model model, HttpSession httpSession, @ModelAttribute Article article) {
+	public String showPostEdit(Model model, HttpSession httpSession, @ModelAttribute Article article, Integer id) {
 		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
 		List<Category> categories = cats.getCategoriesByUser(user.getId());
 		model.addAttribute("categories", categories);
+		if (id != null && id != 0) {
+			article = arts.getArticleById(id);
+			model.addAttribute("article", article);
+		}
 		return "admin/posteditadd";
 	}
 	
 	@PostMapping("/postedit")
 	public ModelAndView postArticle(String isPub, @ModelAttribute Article article, 
-			 HttpSession httpSession, Errors errors) {
+			 HttpSession httpSession, Errors errors, Model model) {
 		
 		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);		
 		ModelAndView mv = new ModelAndView();
@@ -54,22 +58,61 @@ public class AdminController extends BaseController{
 		
 		if (article.getId() == null) {
 			article.setCreateBy(user);
+			article.setCreateAt(new Date());
 			arts.createArticle(article);
 		}
 		
 		if (isPub != null && isPub.equals("1")) {
 			article.setStatus("publish");
-			article.setCreateAt(new Date());
 			mv.setViewName("redirect:/" + user.getUsername() + "/article/" + article.getId());
 		}else {
 			article.setStatus("draft");
 			mv.setViewName("admin/posteditadd");
 		}
-		
+		article.setLastModifyAt(new Date());
 		arts.updateArticle(article);
 		return mv;
 	}
 	
+	@GetMapping("/del")
+	public String deleteArticle(Integer id, HttpSession httpSession) {
+		if (id != null && id != 0) {
+			arts.removeArticle(id);
+		}
+		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
+		return "redirect:/" + user.getUsername() + "/article";
+	}
+	
+	@GetMapping("/top")
+	public String topArticle(Integer id, HttpSession httpSession) {
+		if (id != null && id != 0) {
+			setTop(id, "set");
+		}
+		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
+		return "redirect:/" + user.getUsername() + "/article";
+	}
+	
+	@GetMapping("/untop")
+	public String unTopArticle(Integer id, HttpSession httpSession) {
+		if (id != null && id != 0) {
+			setTop(id, "unset");
+		}
+		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
+		return "redirect:/" + user.getUsername() + "/article";
+	}
+	
+	private void setTop(Integer id, String opt) {
+		Article article = new Article();
+		article.setId(id);
+		if (opt == "set") {
+			article.setTop("1");
+		}
+		else {
+			article.setTop("");
+		}
+		article.setLastModifyAt(new Date());
+		arts.updateArticle(article);
+	}
 
 	
 }

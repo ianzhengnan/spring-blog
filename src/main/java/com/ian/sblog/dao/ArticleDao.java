@@ -104,5 +104,5 @@ public interface ArticleDao {
 	 */
 	@Select("select * from " + COMMENTTABLE + " where article_id = #{id}")
 	List<Comment> getComments(Integer id);
-	
+
 }
