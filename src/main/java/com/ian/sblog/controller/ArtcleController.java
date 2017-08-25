@@ -23,14 +23,18 @@ public class ArtcleController extends BaseController{
 	private List<Article> articles;
 	
 	@GetMapping
-	public String showArticles(@PathVariable String username, Model model, HttpSession httpSession) {
+	public String showArticles(@PathVariable String username, Model model, HttpSession httpSession, String status) {
 		
 		Map<String, Object> params = new HashMap<>();
 		Article article = new Article();
 		// get user from session
 		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
 		article.setCreateBy(user);
-		article.setStatus("publish");
+		if (status != null && status.equals("draft")) {
+			article.setStatus(status);
+		}else {
+			article.setStatus("publish");
+		}
 		params.put("article", article);
 		articles = arts.getArticles(params);
 		

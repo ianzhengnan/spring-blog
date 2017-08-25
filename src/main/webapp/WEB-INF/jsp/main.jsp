@@ -8,7 +8,8 @@
 </head>
 <body>
 Welcome, <span>${sessionScope.user_session.username}</span>&nbsp;&nbsp;<span><a href="${ctx }/account/logout">logout</a></span><br>
-<a href="${ctx}/${sessionScope.user_session.username}/article">所有文章</a> &nbsp;&nbsp;
+<a href="${ctx}/${sessionScope.user_session.username}/article">发布文章</a> &nbsp;&nbsp;
+<a href="${ctx}/${sessionScope.user_session.username}/article?status=draft">草稿</a> &nbsp;&nbsp;
 <a href="${ctx }/postedit">新增</a>
 </body>
 </html>
