@@ -7,6 +7,7 @@
 <title>${sessionScope.user_session.username} - 所有文章</title>
 </head>
 <body>
+<p><a href="${ctx }/account/main">主页</a></p>
 <ul>
 <c:forEach items="${requestScope.articles}" var="art" varStatus="stat">
 	<li>

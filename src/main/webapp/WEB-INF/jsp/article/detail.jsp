@@ -14,5 +14,8 @@
 	<span>评论：${requestScope.article.commentCount == null ? 0 : requestScope.article.commentCount}</span></p>
 	<p>${requestScope.article.content}</p>
 </article>
+
+<p><a href="${ctx}/${sessionScope.user_session.username}/article">所有文章</a></p>
+
 </body>
 </html>
