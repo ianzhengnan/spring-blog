@@ -37,7 +37,7 @@ public class AdminController extends BaseController{
 			article = arts.getArticleById(id);
 			model.addAttribute("article", article);
 		}
-		return "admin/posteditadd";
+		return "article/posteditadd";
 	}
 	
 	@PostMapping("/postedit")
@@ -52,7 +52,7 @@ public class AdminController extends BaseController{
 		articleValidator.validate(article, errors);
 		
 		if (errors.hasErrors()) {
-			mv.setViewName("admin/posteditadd");
+			mv.setViewName("article/posteditadd");
 			return mv;
 		}
 		
@@ -67,7 +67,7 @@ public class AdminController extends BaseController{
 			mv.setViewName("redirect:/" + user.getUsername() + "/article/" + article.getId());
 		}else {
 			article.setStatus("draft");
-			mv.setViewName("admin/posteditadd");
+			mv.setViewName("article/posteditadd");
 		}
 		article.setLastModifyAt(new Date());
 		arts.updateArticle(article);
