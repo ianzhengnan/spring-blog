@@ -13,6 +13,8 @@ public interface CategoryService {
 	void deleteCategory(Integer id);
 	
 	Category getCategoryById(String id);
+
+	void getContainArticleNumber(Category category);
 	
 	List<Category> getCategoriesByUser(Integer id);
 }

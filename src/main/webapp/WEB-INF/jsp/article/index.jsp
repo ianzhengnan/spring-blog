@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<p><a href="${ctx }/account/main">主页</a></p>
+<p><a href="${ctx }/main">主页</a></p>
 <ul>
 <c:forEach items="${requestScope.articles}" var="art" varStatus="stat">
 	<li>

@@ -18,14 +18,17 @@ public interface CategoryDao {
 	@Select("select * from " + CATEGORYTABLE + " where user_id = #{userId}")
 	List<Category> getCategoriesByUserId(Integer userId);
 	
-	@Insert("insert into " + CATEGORYTABLE + "(title, description, visiable, user_id, create_at) values(#{category.title},"
-			+ " #{category.description}, #{category.visiable}, #{category.createBy.id}, #{category.createAt})")
+	@Insert("insert into " + CATEGORYTABLE + "(title, description, visiable, user_id, create_at) values(#{title},"
+			+ " #{description}, #{visiable}, #{createBy.id}, #{createAt})")
 	void save(Category category);
 	
 	@Update("update " + CATEGORYTABLE + " SET title = #{category.title}, description = #{category.description}, visiable = #{category.visiable}"
 			+ ", user_id = #{category.createBy.id} where id = #{category.id}")
 	void updateCategory(Category category);
 	
-	@Delete("delete " + CATEGORYTABLE + " where id = #{id}")
+	@Delete("delete from " + CATEGORYTABLE + " where id = #{id}")
 	void remove(Integer id);
+
+	@Select("select count(*) from " + ARTICLETABLE + " where category_id = #{id}")
+	Integer containArticleNumber(Integer categoryId);
 }

@@ -90,7 +90,7 @@
 		<input type="submit" value="Post" id="postBtn" onclick="onPostBtnPressed()">
 	</form> --%>
 	
-	<p><a href="${ctx}/account/main">主页</a></p>
+	<p><a href="${ctx}/main">主页</a></p>
 	<form:form modelAttribute="article" method="post" action="postedit">
 		<form:select path="category" items="${categories}" itemLabel="title" itemValue="id"/>&nbsp;&nbsp;
 		主题：<input id="ispub" type="hidden" name="isPub" value="2">

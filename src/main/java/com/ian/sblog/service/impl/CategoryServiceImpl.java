@@ -41,12 +41,22 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> getCategoriesByUser(Integer id) {
-		return categoryDao.getCategoriesByUserId(id);
+		List<Category> categories = categoryDao.getCategoriesByUserId(id);
+		for (Category category : categories) {
+			getContainArticleNumber(category);
+		}
+		return categories;
 	}
 
 	@Override
 	public Category getCategoryById(String id) {
 		return categoryDao.getCategoryById(Integer.parseInt(id));
 	}
+
+    @Override
+    public void getContainArticleNumber(Category category) {
+        Integer articleNumber = categoryDao.containArticleNumber(category.getId());
+        category.setArticles(articleNumber);
+    }
 
 }

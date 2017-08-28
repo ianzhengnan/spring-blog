@@ -6,6 +6,7 @@ public class Category {
 
 	private Integer id;
 	private String title;
+	private Integer articles;
 	private String description;
 	private Integer visiable;
 	private User createBy;
@@ -62,6 +63,12 @@ public class Category {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-	
-	
+
+	public Integer getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Integer articles) {
+		this.articles = articles;
+	}
 }

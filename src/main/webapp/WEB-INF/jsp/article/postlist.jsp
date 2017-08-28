@@ -34,10 +34,10 @@
 
 </head>
 <body>
-<span id="testspan"></span>
-<p><a href="${ctx}/account/main">主页</a></p>
+<p><a href="${ctx}/main">主页</a></p>
 <span><a href="${ctx}/postlist?status=draft"><span><c:if test="${requestScope.status != null && requestScope.status == 'draft' }">*</c:if></span>草稿</a></span>|
-<span><a href="${ctx}/postlist?status=publish"><span><c:if test="${requestScope.status == null || requestScope.status == 'publish' }">*</c:if></span>已发布</a></span>
+<span><a href="${ctx}/postlist?status=publish"><span><c:if test="${requestScope.status == null || requestScope.status == 'publish' }">*</c:if></span>已发布</a></span>|
+<span><a href="${ctx}/category">类别管理</a></span>
 <ul>
     <c:forEach items="${requestScope.articles}" var="art" varStatus="stat">
         <li>

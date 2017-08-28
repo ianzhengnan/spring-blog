@@ -26,7 +26,7 @@ import com.ian.sblog.util.SBlogConstants;
 import com.ian.sblog.validator.ArticleValidator;
 
 @Controller
-public class AdminController extends BaseController {
+public class ArticleAdminController extends BaseController {
 
     @Autowired
     @Qualifier("articleValidator") // what is useful?
@@ -59,7 +59,7 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/postedit")
-    public String showPostEdit(Model model, HttpSession httpSession, @ModelAttribute Article article, Integer id) {
+    public String showPostEdit(Model model, @ModelAttribute Article article, HttpSession httpSession, Integer id) {
         User user = (User) httpSession.getAttribute(SBlogConstants.USER_SESSION);
         List<Category> categories = cats.getCategoriesByUser(user.getId());
         model.addAttribute("categories", categories);
