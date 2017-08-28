@@ -27,7 +27,7 @@ public class PassportController extends BaseController{
 		User user = us.logon(username, password);
 		if (user != null) {
 			httpSession.setAttribute(SBlogConstants.USER_SESSION, user);
-			mv.setViewName("redirect:/account/main");
+			mv.setViewName("redirect:../main");
 		}else {
 			// 未来用message class替换
 			mv.addObject("message", "登录名和密码错误，请重新登录！");
@@ -40,13 +40,7 @@ public class PassportController extends BaseController{
 	public String login() {
 		return "login"; //jsp文件名
 	}
-	
-	@RequestMapping("/main")
-	public ModelAndView index(ModelAndView mv) {
-		mv.setViewName("main");
-		return mv;
-	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession) {
 		if(httpSession.getAttribute(SBlogConstants.USER_SESSION) != null) {
@@ -64,7 +58,7 @@ public class PassportController extends BaseController{
 			if (!us.checkUsername(user)) {
 				us.register(user);
 				httpSession.setAttribute(SBlogConstants.USER_SESSION, user);
-				mv.setViewName("redirect:/account/main");
+				mv.setViewName("redirect:../main");
 			}else {
 				mv.addObject("message", "用户名已经存在");
 				mv.setViewName("user/signup");

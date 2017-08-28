@@ -119,7 +119,7 @@ public class AdminController extends BaseController {
             setTop(id, "set");
         }
         User user = (User) httpSession.getAttribute(SBlogConstants.USER_SESSION);
-        return "redirect:/" + user.getUsername() + "/article";
+        return "redirect:/postlist";
     }
 
     @GetMapping("/untop")
@@ -128,7 +128,7 @@ public class AdminController extends BaseController {
             setTop(id, "unset");
         }
         User user = (User) httpSession.getAttribute(SBlogConstants.USER_SESSION);
-        return "redirect:/" + user.getUsername() + "/article";
+        return "redirect:/postlist";
     }
 
     private void setTop(Integer id, String opt) {
