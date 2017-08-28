@@ -85,8 +85,8 @@ public interface ArticleDao {
 	 * @param params
 	 * @return
 	 */
-	@Select("select count(*) from " + ARTICLETABLE + " where create_by = #{userId}")
-	Integer count(Integer userId);
+	@SelectProvider(type = ArticleDynaSqlProvider.class, method = "count")
+	Integer count(Map<String, Object> params);
 	
 	@Select("select * from " + ARTICLETABLE + " where user_id = #{userId} order by id desc limit 1")
 	Integer getLastInsertArticleID(Integer userId);

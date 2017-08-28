@@ -12,9 +12,30 @@
 <html>
 <head>
     <title>管理文章</title>
+
+    <script>
+        function onPrePressed(e){
+            var prePage = ${requestScope.pageModel.currentPage} > 1 ? ${requestScope.pageModel.currentPage - 1} : 1;
+            window.location = "${ctx}/postlist?page=" + prePage;
+        }
+
+        function onNextPressed(e){
+            var nextPage = ${requestScope.pageModel.currentPage} < ${requestScope.pageModel.totalPage} ? ${requestScope.pageModel.currentPage + 1} : ${requestScope.pageModel.totalPage};
+            window.location = "${ctx}/postlist?page=" + nextPage;
+        }
+
+        window.onload = function(){
+            var spantest = document.getElementById("testspan");
+
+        }
+
+    </script>
+
+
 </head>
 <body>
-<p><a href="${ctx }/account/main">主页</a></p>
+<span id="testspan"></span>
+<p><a href="${ctx}/account/main">主页</a></p>
 <p><a href="${ctx}"></a></p>
 <ul>
     <c:forEach items="${requestScope.articles}" var="art" varStatus="stat">
@@ -33,6 +54,11 @@
             </span>
         </li>
     </c:forEach>
+    <a href="${ctx}/postlist?page=1">首页</a>&nbsp;&nbsp;
+    <a href="javascript:onPrePressed()">上一页</a>&nbsp;&nbsp;
+    <a href="javascript:onNextPressed()">下一页</a>&nbsp;&nbsp;
+    <a href="${ctx}/postlist?page=${requestScope.pageModel.totalPage}">最后一页</a>&nbsp;&nbsp;
+    <span>共${requestScope.pageModel.totalPage}页</span>
 </ul>
 </body>
 </html>

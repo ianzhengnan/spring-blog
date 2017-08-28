@@ -52,4 +52,9 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleDao.selectById(id);
 	}
 
+    @Override
+    public Integer getArticleNumber(Map<String, Object> params) {
+        return articleDao.count(params);
+    }
+
 }

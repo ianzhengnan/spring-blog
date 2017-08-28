@@ -127,6 +127,31 @@ public class ArticleDynaSqlProvider {
 		}.toString();
 		return sql;
 	}
-	
+
+	public String count(Map<String, Object> params){
+		String sql = new SQL(){
+			{
+				SELECT("count(*)");
+				FROM(ARTICLETABLE);
+				if(params.get("article") != null) {
+					Article article = (Article)params.get("article");
+					if (article.getSubject() != null && !article.getSubject().equals("") ) {
+						WHERE(" subject like CONCAT('%', #{article.subject}, '%')");
+					}
+					if (article.getCategory() != null) {
+						WHERE(" category_id = #{article.category.id}");
+					}
+					if(article.getStatus() != null && !article.getStatus().equals("")) {
+						WHERE(" status = #{article.status}");
+					}
+					if(article.getCreateBy() != null) {
+						WHERE(" user_id = #{article.createBy.id}");
+					}
+				}
+			}
+		}.toString();
+		return sql;
+	}
+
 
 }
