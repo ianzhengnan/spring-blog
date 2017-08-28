@@ -13,7 +13,9 @@
 	<li>
 		<span><c:if test="${ art.top == '1' }">[置顶]</c:if></span>
 		<span><a href="${ctx}/${sessionScope.user_session.username}/article/${art.id}">${art.subject}</a></span> &nbsp;&nbsp;
-		<span>${art.createAt == null ? "空" : art.lastModifyAt}</span>&nbsp;&nbsp;<span>阅读：${art.visitCount == null ? 0 : art.visitCount}</span>&nbsp;&nbsp;<span>评论：${art.commentCount == null ? 0 : art.commentCount}</span>
+		<span>${art.createAt == null ? "空" : art.lastModifyAt}</span>&nbsp;&nbsp;
+		<span>阅读：${art.visitCount == null ? 0 : art.visitCount}</span>&nbsp;&nbsp;
+		<span>评论：${art.commentCount == null ? 0 : art.commentCount}</span>
 	</li>
 </c:forEach>
 </ul>

@@ -1,7 +1,9 @@
 package com.ian.sblog.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +29,26 @@ public class AdminController extends BaseController{
 	@Autowired
 	@Qualifier("articleValidator") // what is useful?
 	private ArticleValidator articleValidator;
+
+	private List<Article> articles;
+
+	@GetMapping("/postlist")
+	public String showPostList(Model model, HttpSession httpSession, String status){
+		Map<String, Object> params = new HashMap<>();
+		Article article = new Article();
+		// get user from session
+		User user = (User)httpSession.getAttribute(SBlogConstants.USER_SESSION);
+		article.setCreateBy(user);
+		if (status != null && status.equals("draft")) {
+			article.setStatus(status);
+		}else {
+			article.setStatus("publish");
+		}
+		params.put("article", article);
+		articles = arts.getArticles(params);
+		model.addAttribute("articles", articles);
+		return "article/postlist";
+	}
 	
 	@GetMapping("/postedit")
 	public String showPostEdit(Model model, HttpSession httpSession, @ModelAttribute Article article, Integer id) {
