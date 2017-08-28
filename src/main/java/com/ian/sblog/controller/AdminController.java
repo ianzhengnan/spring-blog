@@ -54,6 +54,7 @@ public class AdminController extends BaseController {
 
         articles = arts.getArticles(params);
         model.addAttribute("articles", articles);
+        model.addAttribute("status", status);
         return "article/postlist";
     }
 
