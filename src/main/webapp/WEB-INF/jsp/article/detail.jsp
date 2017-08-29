@@ -8,8 +8,14 @@
 	<script src="${ctx}/js/jquery-3.2.1.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			$("#art_comment").load(
-			    "${ctx}/${sessionScope.user_session.username}/article/${requestScope.article.id}/comments"
+			<%--$("#art_comment").load(--%>
+			    <%--"${ctx}/${sessionScope.user_session.username}/article/${requestScope.article.id}/comments"--%>
+			<%--);--%>
+			$.get(
+                "${ctx}/${sessionScope.user_session.username}/article/${requestScope.article.id}/comments",
+				function(result){
+                    $("#art_comment").html(result);
+				}
 			);
 		});
 

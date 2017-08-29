@@ -17,7 +17,7 @@
     <div>
         <p><span style="font-weight: 700">${comment.createBy.username}</span></p>
         <p><span style="font-size: xx-small">${comment.createAt}</span></p>
-        <p>${comment.content}</p>
+        <p>内容：${comment.content}</p>
     </div>
 </c:forEach>
 </div>
@@ -27,13 +27,16 @@
     $(document).ready(function(){
         $("button").click(function(){
             var commentContent = $("#commend_content").val();
-            $.post("${ctx}/${sessionScope.user_session.username}/article/${article.id}/comments", {content: commentContent}, function(result, textStatus, jqxhr){
-                if(textStatus === 'success'){
-                    $("#art_comment").html(result);
-                }else if(textStatus === "error"){
-                    alert(result);
-                }
-            });
+            $.post(
+                "${ctx}/${sessionScope.user_session.username}/article/${article.id}/comments",
+                {content: commentContent},
+                function(result, textStatus, jqxhr){
+                    if(textStatus === 'success'){
+                        $("#art_comment").html(result);
+                    }else if(textStatus === "error"){
+                        alert(result);
+                    }
+                });
         });
     });
 

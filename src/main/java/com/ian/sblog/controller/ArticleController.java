@@ -53,6 +53,9 @@ public class ArticleController extends BaseController{
 		Article article = arts.getArticleById(articleId);
 		if (article != null) {
 			model.addAttribute("article", article);
+			// set visit count
+			article.setVisitCount((article.getVisitCount() == null ? 0 : article.getVisitCount()) + 1);
+			arts.updateArticle(article);
 		}
 		return "article/detail";
 	}

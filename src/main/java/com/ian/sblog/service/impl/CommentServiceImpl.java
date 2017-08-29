@@ -48,10 +48,10 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> getComments(Map<String, Object> params) {
 
 		List<Comment> comments = commentDao.selectByParams(params);
-		/*for (Comment comment :
+		for (Comment comment :
 				comments) {
 			comment.setCreateBy(userDao.selectById(comment.getCreateBy().getId()));
-		}*/
+		}
 		return comments;
 	}
 
