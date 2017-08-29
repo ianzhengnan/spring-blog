@@ -51,6 +51,9 @@ public class CommentDynaSqlProvider {
 				if (comment.getReplyComment() != null)	{
 					SET("reply_comment_id = #{replyComment.id}");
 				}
+				if (comment.getCreateAt() != null){
+					SET("create_at = #{createAt}");
+				}
 				WHERE("id = #{id}");
 			}
 		}.toString();
@@ -75,6 +78,9 @@ public class CommentDynaSqlProvider {
 				}
 				if (comment.getReplyComment() != null)	{
 					VALUES("reply_comment_id", "#{replyComment.id}");
+				}
+				if (comment.getCreateAt() != null){
+					VALUES("create_at", "#{createAt}");
 				}
 			}
 		}.toString();

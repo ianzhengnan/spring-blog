@@ -3,6 +3,7 @@ package com.ian.sblog.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.ian.sblog.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
 	private CommentDao commentDao;
+
+	@Autowired
+	private UserDao userDao;
 	
 	@Override
 	public void createComment(Comment comment) {
@@ -42,7 +46,13 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> getComments(Map<String, Object> params) {
-		return commentDao.selectByParams(params);
+
+		List<Comment> comments = commentDao.selectByParams(params);
+		/*for (Comment comment :
+				comments) {
+			comment.setCreateBy(userDao.selectById(comment.getCreateBy().getId()));
+		}*/
+		return comments;
 	}
 
 }

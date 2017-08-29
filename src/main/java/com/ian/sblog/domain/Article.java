@@ -24,6 +24,10 @@ public class Article {
 	public Article() {
 		
 	}
+
+	public Article(Integer id){
+		this.id = id;
+	}
 	
 	public List<Picture> getPictures() {
 		return pictures;
@@ -82,7 +86,7 @@ public class Article {
 	}
 
 	public Integer getCommentCount() {
-		return commentCount;
+		return commentCount == null? 0 : commentCount;
 	}
 
 	public void setCommentCount(Integer commentCount) {
