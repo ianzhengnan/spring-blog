@@ -23,9 +23,17 @@ public class ArticleServiceImpl implements ArticleService{
 
 	private static final Logger log = LoggerFactory.getLogger(ArticleServiceImpl.class);
 	
-	@Autowired
 	private ArticleDao articleDao;
-	
+
+	public ArticleServiceImpl(){
+
+	}
+
+	@Autowired
+	public ArticleServiceImpl(ArticleDao articleDao){
+		this.articleDao = articleDao;
+	}
+
 	@Override
 	public void createArticle(Article article) {
 		log.debug("ArticleServiceImpl >> create an article");

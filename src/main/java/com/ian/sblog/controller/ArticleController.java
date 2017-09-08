@@ -48,7 +48,6 @@ public class ArticleController extends BaseController{
 		model.addAttribute("username", username);
 
 		PerformanceMonitor.end();
-
 		return "article/index";
 	}
 	
