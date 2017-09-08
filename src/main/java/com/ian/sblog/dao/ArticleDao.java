@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import com.ian.sblog.dao.provider.ArticleDynaSqlProvider;
 import com.ian.sblog.domain.Article;
 import com.ian.sblog.domain.Comment;
+import org.springframework.stereotype.Repository;
 
 import static com.ian.sblog.util.SBlogConstants.*;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+//@Repository
 public interface ArticleDao {
 
 	/**
