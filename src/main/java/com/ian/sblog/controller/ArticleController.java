@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.ian.sblog.chapter7.PerformanceMonitor;
 import com.ian.sblog.util.PageHandler;
 import com.ian.sblog.util.PageModel;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,9 @@ public class ArticleController extends BaseController{
 	
 	@GetMapping
 	public String showArticles(@PathVariable String username, Model model, HttpSession httpSession, Integer page) {
-		
+
+		PerformanceMonitor.begin("ArticleController.showArticles");
+
 		Map<String, Object> params = new HashMap<>();
 		Article article = new Article();
 		// get user from session
@@ -43,7 +46,9 @@ public class ArticleController extends BaseController{
 		
 		model.addAttribute("articles", articles);
 		model.addAttribute("username", username);
-		
+
+		PerformanceMonitor.end();
+
 		return "article/index";
 	}
 	
