@@ -34,6 +34,10 @@ public class ArticleServiceImpl implements ArticleService{
 		this.articleDao = articleDao;
 	}
 
+	public void setArticleDao(ArticleDao articleDao){
+		this.articleDao = articleDao;
+	}
+
 	@Override
 	public void createArticle(Article article) {
 		log.debug("ArticleServiceImpl >> create an article");
