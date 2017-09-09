@@ -9,7 +9,7 @@ public class BeforeAdviceConfigTest {
 
     @Test
     public void proxy(){
-        String configPath = "com/ian/sblog/chapter7/advice/beans.xml";
+        String configPath = "classpath:com/ian/sblog/chapter7/advice/beans.xml";
         ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
 
         Daxia daxia = (Daxia)ctx.getBean("daxia");
