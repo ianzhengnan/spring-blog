@@ -3,12 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="kickAdvice" class="com.ian.sblog.chapter7.advice.KickBeforeAdvice"/>
+    <bean id="kickAround" class="com.ian.sblog.chapter7.advice.KickInterceptor"/>
+    <bean id="kickAdviceBefore" class="com.ian.sblog.chapter7.advice.KickBeforeAdvice"/>
+    <bean id="kickAdviceAfter" class="com.ian.sblog.chapter7.advice.KickAfterAdvice"/>
     <bean id="target" class="com.ian.sblog.chapter7.advice.NormalDaxia" />
 
     <bean id="daxia" class="org.springframework.aop.framework.ProxyFactoryBean"
         p:proxyInterfaces="com.ian.sblog.chapter7.advice.Daxia"
-        p:interceptorNames="kickAdvice" p:optimize="true"
+        p:interceptorNames="kickAround" p:optimize="true"
         p:target-ref="target" />
+
+    <bean id="tr" class="com.ian.sblog.chapter7.advice.TransactionManager"/>
+    <bean id="forumServiceTarget" class="com.ian.sblog.service.impl.ForumServiceImpl"/>
+    <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="tr"
+          p:target-ref="forumServiceTarget"
+          p:proxyTargetClass="true" /> <!-- 表示用cglib方式创建代理 -->
 
 </beans>

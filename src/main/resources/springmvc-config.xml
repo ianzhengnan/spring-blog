@@ -17,7 +17,7 @@
 	<mvc:annotation-driven conversion-service="conversionService" />
 	<!-- 使用默认的Servlet来响应静态文件 -->
 	<mvc:default-servlet-handler />
-	
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- 拦截所有请求 -->
