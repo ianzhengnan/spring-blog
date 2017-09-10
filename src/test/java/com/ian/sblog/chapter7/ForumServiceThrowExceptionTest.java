@@ -14,6 +14,7 @@ public class ForumServiceThrowExceptionTest {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(configName);
 
         ForumService forumService = (ForumService) ctx.getBean("forumService");
+
         try{
             forumService.removeForum(1);
         }catch (Exception ex){
