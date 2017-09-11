@@ -2,11 +2,9 @@ package com.ian.sblog.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.ian.sblog.domain.Message;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ian.sblog.domain.User;
@@ -15,6 +13,8 @@ import com.ian.sblog.util.SBlogConstants;
 @Controller
 @RequestMapping("/account")
 public class PassportController extends BaseController{
+
+	private Message msg = new Message();
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST) // 只有一个参数时候，可以简写省去value = ""
 	public ModelAndView handleLogin(@RequestParam(value = "username", required = false) String username, 
@@ -35,7 +35,25 @@ public class PassportController extends BaseController{
 		}
 		return mv;
 	}
-	
+
+	@GetMapping("/smslogin")
+	public String smsLogin(){
+		return "signin";
+	}
+
+	@PostMapping("/smslogin")
+	public ModelAndView handleSmsLogin(ModelAndView mv, String phone ){
+
+		return mv;
+	}
+
+	@PostMapping("/sendSMS")
+	@ResponseBody
+	public Message sendSms(String phone){
+		msg.setMsg(phone);
+		return msg;
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login"; //jsp文件名

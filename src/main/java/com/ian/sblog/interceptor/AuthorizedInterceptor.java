@@ -11,7 +11,8 @@ import com.ian.sblog.util.SBlogConstants;
 
 public class AuthorizedInterceptor implements HandlerInterceptor{
 
-	private static final String[] IGNORE_URI = {"/account/login", "/404.html", "/favicon.ico", "/account/signup"};
+	private static final String[] IGNORE_URI = {"/account/login", "/404.html", "/favicon.ico",
+			"/account/signup", "/account/smslogin", "/js/jquery-3.2.1.min.js", "/account/sendSMS" };
 	
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object obj, Exception exp)
