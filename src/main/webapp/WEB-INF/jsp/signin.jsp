@@ -50,6 +50,7 @@
 
             $("#getSmsCodeBtn").click(function () {
                 var phone = $("#phone").val();
+                var that = this;
 
                 if(!phone || phone === ''){
                     alert("请输入手机号码！");
@@ -58,11 +59,18 @@
                 this.innerText = "(" + wait + ")秒后重新发送";
                 this.disabled = true;
 
-                countSecond();
-
                 $.post("/account/sendSMS", {phone: phone}, function (result) {
-                    console.log(result);
+                    if(result && result.err){
+                        that.innerText = "点击发送验证码";
+                        that.disabled = false;
+                        alert(result.err);
+                    }else{
+                        countSecond();
+                        console.log(result);
+                    }
                 });
+
+
             });
         });
 
