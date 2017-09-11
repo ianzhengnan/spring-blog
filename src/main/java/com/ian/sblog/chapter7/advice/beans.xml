@@ -13,11 +13,13 @@
         p:interceptorNames="kickAround" p:optimize="true"
         p:target-ref="target" />
 
+    <bean id="pmonitor" class="com.ian.sblog.chapter7.advice.ControllablePerformanceMonitor"/>
     <bean id="tr" class="com.ian.sblog.chapter7.advice.TransactionManager"/>
     <bean id="forumServiceTarget" class="com.ian.sblog.service.impl.ForumServiceImpl"/>
     <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:interceptorNames="tr"
+          p:interfaces="com.ian.sblog.chapter7.advice.Monitorable"
           p:target-ref="forumServiceTarget"
+          p:interceptorNames="pmonitor"
           p:proxyTargetClass="true" /> <!-- 表示用cglib方式创建代理 -->
 
 </beans>
