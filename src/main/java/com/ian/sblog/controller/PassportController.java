@@ -63,7 +63,8 @@ public class PassportController extends BaseController{
 	@ResponseBody
 	public Message sendSms(String phone, HttpSession httpSession) throws ClientException, InterruptedException{
 
-		String smscode = "123456";
+		int number = (int)((Math.random() * 9 + 1) * 100000);
+		String smscode = String.valueOf(number);
 		SendSmsResponse response = SendSMS.sendSms(phone, smscode);
 		if (!response.getCode().equals("OK")){
 			msg.setErr(response.getMessage());
