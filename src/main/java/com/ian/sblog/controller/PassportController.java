@@ -1,8 +1,12 @@
 package com.ian.sblog.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.http.HTTPBinding;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.aliyuncs.exceptions.ClientException;
 import com.ian.sblog.domain.Message;
+import com.ian.sblog.util.SendSMS;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,14 +46,30 @@ public class PassportController extends BaseController{
 	}
 
 	@PostMapping("/smslogin")
-	public ModelAndView handleSmsLogin(ModelAndView mv, String phone ){
-
+	public ModelAndView handleSmsLogin(ModelAndView mv, String phone, String smscode, HttpSession httpSession){
+		String smsOrigin = (String)httpSession.getAttribute("smscode");
+		if (smscode.equals(smsOrigin)){
+			User user = us.getUserByPhone(phone);
+			httpSession.setAttribute(SBlogConstants.USER_SESSION, user);
+			mv.setViewName("redirect:../main");
+		}else{
+			mv.addObject("message", "验证码错误，请重新登录！");
+			mv.setViewName("signin");
+		}
 		return mv;
 	}
 
 	@PostMapping("/sendSMS")
 	@ResponseBody
-	public Message sendSms(String phone){
+	public Message sendSms(String phone, HttpSession httpSession) throws ClientException, InterruptedException{
+
+		String smscode = "123456";
+		SendSmsResponse response = SendSMS.sendSms(phone, smscode);
+		if (!response.getCode().equals("OK")){
+			msg.setErr(response.getMessage());
+			return msg;
+		}
+		httpSession.setAttribute("smscode", smscode);
 		msg.setMsg(phone);
 		return msg;
 	}

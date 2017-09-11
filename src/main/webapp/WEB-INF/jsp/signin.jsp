@@ -28,7 +28,6 @@
 
         $(document).ready(function () {
             $("#loginbtn").click(function () {
-                $("form").preventDefault();
                 var phone = $("#phone").val();
                 var smscode = $("#smscode").val();
                 if(!phone || phone === ''){
@@ -39,6 +38,13 @@
                 }
 
                 // ajax
+                $.post("/account/smslogin", {phone: phone, smscode: smscode}, function (result, textStatus) {
+                    if(textStatus === 'success'){
+                        window.location.href = "/main";
+                    }else{
+                        console.log(result);
+                    }
+                });
 
             });
 

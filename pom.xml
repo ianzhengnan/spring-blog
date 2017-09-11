@@ -132,7 +132,18 @@
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	</dependency>
-	
+	<dependency>
+        <groupId>com.aliyun</groupId>
+        <artifactId>aliyun-java-sdk-core</artifactId>
+        <version>3.2.3</version>
+    </dependency>
+    <dependency>
+        <groupId>com.aliyun</groupId>
+        <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+        <version>1.0.0</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/libs/aliyun-java-sdk-dysmsapi-1.0.0.jar</systemPath>
+    </dependency>
   </dependencies>
   
   
@@ -162,6 +173,31 @@
                       </configuration>
                   </execution>
               </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>2.3</version>
+              <configuration>
+                  <warName>${project.artifactId}</warName>
+                  <webResources>
+                      <resource>
+                          <directory>libs/</directory>
+                          <targetPath>WEB-INF/lib</targetPath>
+                          <includes>
+                              <include>**/*.jar</include>
+                          </includes>
+                      </resource>
+                  </webResources>
+              </configuration>
           </plugin>
       </plugins>
   </build>

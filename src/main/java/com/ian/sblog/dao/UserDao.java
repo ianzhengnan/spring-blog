@@ -25,7 +25,15 @@ public interface UserDao {
 	 */
 	@Select("select * from " + USERTABLE + " where username = #{username} and password = #{password}")
 	User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
-	
+
+	/**
+	 *
+	 * @param phone
+	 * @return
+	 */
+	@Select("select * from " + USERTABLE + " where phone = #{phone} limit 1")
+	User getUserByPhone(String phone);
+
 	/**
 	 * Get user by username
 	 * @param username

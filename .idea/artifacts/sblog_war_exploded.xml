@@ -82,6 +82,7 @@
           <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.03" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.1" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-core:3.2.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">
