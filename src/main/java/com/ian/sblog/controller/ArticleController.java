@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.ian.sblog.chapter7.PerformanceMonitor;
+import com.ian.sblog.x4.chapter7.PerformanceMonitor;
 import com.ian.sblog.util.PageHandler;
 import com.ian.sblog.util.PageModel;
 import org.springframework.stereotype.Controller;
