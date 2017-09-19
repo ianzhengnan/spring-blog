@@ -8,12 +8,12 @@ public class StaticMethodAdvisorTest {
 
     @Test
     public void staticMethod(){
-        String configPath = "com/ian/sblog/x4/advisor/beans.xml";
+        String configPath = "com/ian/sblog/x4/chapter7/advisor/beans.xml";
         ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
         Waiter waiter = (Waiter) ctx.getBean("waiter");
         Seller seller = (Seller) ctx.getBean("seller");
 
-        waiter.greedTo("John");
+        waiter.greetTo("Ian");
         waiter.serveTo("John");
         seller.greetTo("John");
     }
