@@ -13,8 +13,14 @@ public class StaticMethodAdvisorTest {
         Waiter waiter = (Waiter) ctx.getBean("waiter");
         Seller seller = (Seller) ctx.getBean("seller");
 
+//        WaiterDelegate wd = new WaiterDelegate();
+//        wd.setWaiter(waiter);
+
         waiter.greetTo("Ian");
         waiter.serveTo("John");
         seller.greetTo("John");
+//        wd.service("Peter");
     }
+
+
 }
