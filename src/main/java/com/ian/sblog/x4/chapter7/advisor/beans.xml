@@ -6,8 +6,8 @@
     <bean id="waiter" class="com.ian.sblog.x4.chapter7.advisor.Waiter"/>
     <bean id="seller" class="com.ian.sblog.x4.chapter7.advisor.Seller"/>
     <bean id="greetingAdvice" class="com.ian.sblog.x4.chapter7.advisor.GreetingBeforeAdvice"/>
-    <bean id="greetingAdvisor" class="com.ian.sblog.x4.chapter7.advisor.GreetingAdvisor"
-        p:advice-ref="greetingAdvice"/>
+    <!--<bean id="greetingAdvisor" class="com.ian.sblog.x4.chapter7.advisor.GreetingAdvisor"-->
+        <!--p:advice-ref="greetingAdvice"/>-->
 
     <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
           p:advice-ref="greetingAdvice">
@@ -18,20 +18,22 @@
         </property>
     </bean>
 
-    <bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">
-        <constructor-arg type="java.lang.Class" value="com.ian.sblog.x4.chapter7.advisor.WaiterDelegate" />
-        <constructor-arg type="java.lang.String" value="service"/>
-    </bean>
+    <!--<bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">-->
+        <!--<constructor-arg type="java.lang.Class" value="com.ian.sblog.x4.chapter7.advisor.WaiterDelegate" />-->
+        <!--<constructor-arg type="java.lang.String" value="service"/>-->
+    <!--</bean>-->
 
-    <bean id="controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
-          p:advice-ref="greetingAdvice" p:pointcut-ref="controlFlowPointcut" />
+    <!--<bean id="controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"-->
+          <!--p:advice-ref="greetingAdvice" p:pointcut-ref="controlFlowPointcut" />-->
 
     <!--<bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean"-->
         <!--p:interceptorNames="controlFlowAdvisor" p:proxyTargetClass="true" />-->
 
-    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
-        p:beanNames="*er"
-        p:interceptorNames="greetingAdvice" p:optimize="true"/>
+    <!--<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"-->
+        <!--p:beanNames="*er"-->
+        <!--p:interceptorNames="greetingAdvice" p:optimize="true"/>-->
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 
     <!--<bean id="waiter" parent="parent" p:target-ref="waiterTarget"/>-->
     <!--<bean id="seller" parent="parent" p:target-ref="sellerTarget"/>-->
