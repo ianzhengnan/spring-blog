@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="gongfu" class="com.ian.sblog.x4.chapter8.aspectj.NormalGongfu" />
+    <!--多个切面在下面列出-->
+    <bean class="com.ian.sblog.x4.chapter8.aspectj.PreBoxingAspect" />
+    <bean class="com.ian.sblog.x4.chapter8.aspectj.EnableLiaoshangAspect" />
+
+    <!-- proxy-target-class="true" 表示用cglib创建动态代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <!-- 上面为下面的简写版，使用了aop schema -->
+    <!--<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />-->
+
+
+</beans>
