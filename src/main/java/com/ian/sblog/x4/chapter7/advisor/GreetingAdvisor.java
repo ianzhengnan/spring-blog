@@ -16,7 +16,7 @@ public class GreetingAdvisor extends StaticMethodMatcherPointcutAdvisor {
         return new ClassFilter() {
             @Override
             public boolean matches(Class clazz) {
-                return Waiter.class.isAssignableFrom(clazz);
+                return Seller.class.isAssignableFrom(clazz);
             }
         };
     }
