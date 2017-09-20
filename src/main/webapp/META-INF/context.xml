@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Context>
+    <Resource
+        name="jdbc/mysql"
+        auth="Container"
+        type="javax.sql.DataSource"
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+        username="root"
+        password="1234567"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://127.0.0.1:3306/sblog" />
+
+    <Resource
+        name="mysql/c3p0"
+        auth="Container"
+        factory="org.apache.naming.factory.BeanFactory"
+        type="com.mchange.v2.c3p0.ComboPooledDataSource"
+        maxPoolSize="20"
+        minPoolSize="5"
+        maxIdleTime="1000"
+        user="root"
+        password="1234567"
+        driverClass="com.mysql.jdbc.Driver"
+        jdbcUrl="jdbc:mysql://127.0.0.1:3306/sblog" />
+</Context>
