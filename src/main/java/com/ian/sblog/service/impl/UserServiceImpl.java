@@ -17,18 +17,14 @@ import com.ian.sblog.domain.User;
 import com.ian.sblog.service.UserService;
 
 @Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
-@Service
+@Service(value = "sblogUserService")
 public class UserServiceImpl implements UserService{
 
 	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	
+	@Autowired
 	private UserDao userDao;
 
-	@Autowired
-	public void setUserDao(UserDao userDao){
-		this.userDao = userDao;
-	}
-	
 	@Override
 	@Cacheable(cacheNames = "users")
 	public User logon(String username, String password) {

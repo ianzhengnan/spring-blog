@@ -13,10 +13,10 @@ import java.lang.reflect.Proxy;
 
 @SpringApplicationContext("classpath:applicationContext.xml")
 //通过JDK的方式获得代理对象
-public class ArticleServiceTest extends UnitilsTestNG{
+public class ArticleServiceTest extends UnitilsTestNG{@SpringBean("articleDao")
+private ArticleDao articleDao;
 
-    @SpringBean("articleDao")
-    private ArticleDao articleDao;
+
 
     @Test
     public void proxy(){

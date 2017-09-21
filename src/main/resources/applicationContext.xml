@@ -24,12 +24,12 @@
 
 	<context:component-scan base-package="com.ian.sblog"/>
 	
-	<!--<context:property-override location="classpath:db.properties" />-->
 	<!--直接配置数据源，现在都大部分项目都是这样配置-->
-	<!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" />-->
+	<context:property-override location="classpath:db.properties" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" />
 
-	<!--使用jndi配置方式，配置数据源 1简化方式，使用jee schema 2传统方式-->
-	<jee:jndi-lookup jndi-name="java:comp/env/mysql/c3p0" id="dataSource" />
+	<!--使用jndi配置方式，配置数据源 1简化方式，使用jee schema 2传统方式: 注释上面两行，取消注释下面一行可以打开jndi方式-->
+	<!--<jee:jndi-lookup jndi-name="java:comp/env/mysql/c3p0" id="dataSource" />-->
 
 	<!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" >-->
 		<!--<property name="jndiName" value="java:comp/env/mysql/c3p0"/>-->
