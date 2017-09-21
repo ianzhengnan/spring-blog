@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:hz="http://www.hazelcast.com/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd http://www.hazelcast.com/schema/spring http://www.hazelcast.com/schema/spring/hazelcast-spring.xsd">
+
+    <cache:annotation-driven/>
+    <bean id="userService" class="com.ian.sblog.x4.chapter15.UserService"/>
+    <bean id="cacheGroupUserService" class="com.ian.sblog.x4.chapter15.cachegroup.UserService"/>
+    <!--<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="default"/>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="users" />
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="members" />
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="visitors" />
+            </set>
+        </property>
+    </bean>-->
+
+    <!--<bean id="cacheManager2" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager"
+          p:cacheNames="default, users, members, visitors"/>-->
+
+    <hz:hazelcast id="hazelcast">
+        <hz:config>
+            <hz:map name="users">
+                <hz:map-store enabled="true" write-delay-seconds="0" class-name="com.ian.sblog.x4.chapter15.cachegroup.User" />
+            </hz:map>
+        </hz:config>
+    </hz:hazelcast>
+
+    <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
+        <property name="cacheManagers">
+            <list>
+                <bean class="org.springframework.cache.support.SimpleCacheManager">
+                    <property name="caches">
+                        <set>
+                            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="default"/>
+                            <!--<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="users" />-->
+                            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="members" />
+                            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="visitors" />
+                        </set>
+                    </property>
+                </bean>
+                <bean class="com.hazelcast.spring.cache.HazelcastCacheManager">
+                    <constructor-arg ref="hazelcast" />
+                </bean>
+            </list>
+        </property>
+        <property name="fallbackToNoOpCache" value="true" />
+    </bean>
+
+
+</beans>

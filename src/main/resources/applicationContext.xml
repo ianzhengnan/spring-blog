@@ -5,7 +5,7 @@
 	   xmlns:p="http://www.springframework.org/schema/p"
 	   xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
 	   xmlns:tx="http://www.springframework.org/schema/tx"
-	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:jee="http://www.springframework.org/schema/jee" xmlns:cache="http://www.springframework.org/schema/cache"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context
@@ -15,11 +15,13 @@
 		http://mybatis.org/schema/mybatis-spring
 		http://mybatis.org/schema/mybatis-spring.xsd
 		http://www.springframework.org/schema/jee
-		http://www.springframework.org/schema/jee/spring-jee.xsd">
+		http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 		
 		
 	<mybatis:scan base-package="com.ian.sblog.dao"/>		
-	
+	<!--配置基于注解的缓存-->
+	<cache:annotation-driven/>
+
 	<context:component-scan base-package="com.ian.sblog"/>
 	
 	<!--<context:property-override location="classpath:db.properties" />-->
@@ -33,6 +35,13 @@
 		<!--<property name="jndiName" value="java:comp/env/mysql/c3p0"/>-->
 	<!--</bean>-->
 
+	<!--配置缓存-->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="ehcache"/>
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml"/>
+
+	<!--配置mybatis sqlsessionfactory -->
 	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource" />
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 

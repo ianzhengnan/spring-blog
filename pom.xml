@@ -28,6 +28,26 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-web</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
@@ -58,7 +78,7 @@
         <version>6.8.7</version>
         <scope>test</scope>
     </dependency>
-	<dependency> 
+	<dependency>
 	  <groupId>mysql</groupId>
 	  <artifactId>mysql-connector-java</artifactId>
 	  </dependency>
@@ -135,14 +155,25 @@
       <dependency>
           <groupId>org.aspectj</groupId>
           <artifactId>aspectjrt</artifactId>
-          <version>1.8.9</version>
       </dependency>
       <dependency>
           <groupId>org.aspectj</groupId>
           <artifactId>aspectjweaver</artifactId>
-          <version>1.8.9</version>
       </dependency>
-
+      <dependency>
+          <groupId>com.hazelcast</groupId>
+          <artifactId>hazelcast-all</artifactId>
+          <version>3.3</version>
+      </dependency>
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>net.sf.ehcache</groupId>
+          <artifactId>ehcache</artifactId>
+      </dependency>
   </dependencies>
   
   
