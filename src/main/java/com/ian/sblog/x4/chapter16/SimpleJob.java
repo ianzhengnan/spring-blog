@@ -6,7 +6,7 @@ import org.quartz.JobExecutionException;
 
 import java.util.Date;
 
-public class SImpleJob implements Job {
+public class SimpleJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {

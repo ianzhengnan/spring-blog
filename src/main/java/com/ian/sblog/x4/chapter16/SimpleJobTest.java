@@ -1,28 +1,24 @@
 package com.ian.sblog.x4.chapter16;
 
-import org.junit.Test;
-import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
-import org.quartz.SimpleTrigger;
 import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.triggers.SimpleTriggerImpl;
 
 import java.util.Date;
 
-public class SimpleTriggerRunner {
+public class SimpleJobTest {
 
-    @Test
-    public void testSimpleTrigger() throws Throwable{
-
+    public static void main(String[] args) throws Exception{
         JobDetailImpl jobDetail = new JobDetailImpl();
         jobDetail.setGroup("jgroup1");
         jobDetail.setName("job1_1");
-        jobDetail.setJobClass(SImpleJob.class);
+        jobDetail.setJobClass(SimpleJob.class);
 
         SimpleTriggerImpl simpleTrigger = new SimpleTriggerImpl();
         simpleTrigger.setName("job1_1");
+        simpleTrigger.setDescription(simpleTrigger.getName());
         simpleTrigger.setGroup("jgroup1");
         simpleTrigger.setStartTime(new Date());
         simpleTrigger.setRepeatInterval(2000);
@@ -32,6 +28,5 @@ public class SimpleTriggerRunner {
         Scheduler scheduler = schedulerFactory.getScheduler();
         scheduler.scheduleJob(jobDetail, simpleTrigger);
         scheduler.start();
-
     }
 }
