@@ -89,6 +89,8 @@
           <element id="library" level="project" name="Maven: com.eclipsesource.minimal-json:minimal-json:0.9.1" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache:2.10.4" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.3.0" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" />
         </element>
       </element>
       <element id="directory" name="META-INF">
