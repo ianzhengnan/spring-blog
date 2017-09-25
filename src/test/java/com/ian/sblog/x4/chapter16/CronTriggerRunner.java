@@ -1,5 +1,6 @@
 package com.ian.sblog.x4.chapter16;
 
+import com.ian.sblog.x4.chapter16.quartz.SimpleJob;
 import org.junit.Test;
 import org.quartz.CronExpression;
 import org.quartz.Scheduler;

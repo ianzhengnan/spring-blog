@@ -1,5 +1,6 @@
-package com.ian.sblog.x4.chapter16;
+package com.ian.sblog.x4.chapter16.quartz;
 
+import com.ian.sblog.x4.chapter16.quartz.SimpleJob;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.impl.JobDetailImpl;

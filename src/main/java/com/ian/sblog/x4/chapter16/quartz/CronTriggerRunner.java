@@ -1,4 +1,4 @@
-package com.ian.sblog.x4.chapter16;
+package com.ian.sblog.x4.chapter16.quartz;
 
 import org.quartz.CronExpression;
 import org.quartz.Scheduler;
