@@ -25,6 +25,8 @@ public class JDBCJobStoreRunner {
                 }
             }
         }
-        scheduler.start();
+        if (!triggerGroups.isEmpty()){
+            scheduler.start();
+        }
     }
 }
