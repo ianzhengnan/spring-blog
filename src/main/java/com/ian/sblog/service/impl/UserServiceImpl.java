@@ -66,5 +66,9 @@ public class UserServiceImpl implements UserService{
 	public Integer count(Map<String, Object> params) {
 		return userDao.count(params);
 	}
-	
+
+	@Override
+	public User getUserByUsername(String name) {
+		return userDao.selectByUsername(name);
+	}
 }

@@ -1,5 +1,6 @@
 package com.ian.sblog.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -41,8 +42,10 @@ public class PassportController extends BaseController{
 		return "login"; //jsp文件名
 	}
 
+	// 为了测试mock HttpServletRequest，改用从request里获得session
 	@RequestMapping("/logout")
-	public String logout(HttpSession httpSession) {
+	public String logout(/*HttpSession httpSession*/ HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
 		if(httpSession.getAttribute(SBlogConstants.USER_SESSION) != null) {
 			httpSession.removeAttribute(SBlogConstants.USER_SESSION);			
 		}

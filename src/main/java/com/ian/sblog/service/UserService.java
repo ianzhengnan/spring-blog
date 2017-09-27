@@ -22,4 +22,6 @@ public interface UserService {
 	List<User> getUsers(Map<String, Object> params);
 	
 	Integer count(Map<String, Object> params);
+
+	User getUserByUsername(String name);
 }
