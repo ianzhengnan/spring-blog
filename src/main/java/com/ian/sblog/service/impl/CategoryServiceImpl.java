@@ -15,7 +15,7 @@ import com.ian.sblog.domain.Category;
 import com.ian.sblog.service.CategoryService;
 
 @Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
-@Service
+@Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
 	
 	private static final Logger log = LoggerFactory.getLogger(CategoryServiceImpl.class);

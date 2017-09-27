@@ -118,5 +118,7 @@ public interface UserDao {
 	
 	@Delete("delete from " + FOLLOWTABLE + " where user_id = #{id} and follower_id = #{followerId)")
 	void unFollow(Integer id, Integer followerId);
-	
+
+	@Delete("delete from " + USERTABLE)
+	void clean();
 }

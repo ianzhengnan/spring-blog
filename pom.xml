@@ -121,12 +121,12 @@
         <groupId>org.unitils</groupId>
         <artifactId>unitils-dbunit</artifactId>
         <version>${unitils.version}</version>
-        <exclusions>
-            <exclusion>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-            </exclusion>
-        </exclusions>
+        <!--<exclusions>-->
+            <!--<exclusion>-->
+                <!--<groupId>org.dbunit</groupId>-->
+                <!--<artifactId>dbunit</artifactId>-->
+            <!--</exclusion>-->
+        <!--</exclusions>-->
     </dependency>
     <dependency>
 		<groupId>commons-io</groupId>

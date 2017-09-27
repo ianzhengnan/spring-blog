@@ -10,8 +10,12 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-08-15 16:51:39
+Date: 2017-09-27 14:38:28
 */
+
+DROP DATABASE IF EXISTS sblog_test;
+CREATE DATABASE sblog_test;
+USE sblog_test;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -25,18 +29,20 @@ CREATE TABLE `bg_article` (
   `content` text,
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `top` varchar(2) DEFAULT '',
   `visit_count` int(11) DEFAULT NULL,
   `comment_count` int(11) DEFAULT NULL,
   `shared_count` int(11) DEFAULT NULL,
+  `stared_count` int(11) DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `last_modify_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
+  `last_modify_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bg_article_user` (`user_id`),
   KEY `bg_article_category` (`category_id`),
   CONSTRAINT `bg_article_category` FOREIGN KEY (`category_id`) REFERENCES `bg_category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `bg_article_user` FOREIGN KEY (`user_id`) REFERENCES `bg_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for bg_category
@@ -48,11 +54,11 @@ CREATE TABLE `bg_category` (
   `description` varchar(100) DEFAULT NULL,
   `visiable` tinyint(4) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bg_category_user` (`user_id`),
   CONSTRAINT `bg_category_user` FOREIGN KEY (`user_id`) REFERENCES `bg_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for bg_comment
@@ -64,14 +70,14 @@ CREATE TABLE `bg_comment` (
   `article_id` int(11) NOT NULL,
   `reply_comment_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `last_modify_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
+  `last_modify_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bg_comment_article` (`article_id`),
   KEY `bg_comment_user` (`user_id`),
   CONSTRAINT `bg_comment_article` FOREIGN KEY (`article_id`) REFERENCES `bg_article` (`id`) ON DELETE CASCADE,
   CONSTRAINT `bg_comment_user` FOREIGN KEY (`user_id`) REFERENCES `bg_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for bg_follow
@@ -81,7 +87,7 @@ CREATE TABLE `bg_follow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `follower_id` int(11) NOT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,7 +105,7 @@ CREATE TABLE `bg_picture` (
   `file_url` varchar(300) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `article_id` int(11) DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `article_id` (`article_id`) USING HASH,
   KEY `bg_picture_user` (`user_id`),
@@ -115,7 +121,7 @@ CREATE TABLE `bg_stared_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`) USING HASH,
   KEY `article_id` (`article_id`) USING HASH,
@@ -128,7 +134,7 @@ CREATE TABLE `bg_stared_article` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bg_user`;
 CREATE TABLE `bg_user` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `display_name` varchar(100) DEFAULT NULL,
@@ -155,7 +161,7 @@ CREATE TABLE `bg_user` (
   `blog_subtitle` varchar(200) DEFAULT NULL,
   `blog_theme` varchar(100) DEFAULT NULL,
   `last_logon_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `create_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `last_modify_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_at` timestamp NULL DEFAULT NULL,
+  `last_modify_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
