@@ -16,7 +16,7 @@ public class UserDaoTest extends BaseDaoTest{
 	private UserDao userDao;
 	
 	@Test
-	@DataSet("UserDao.Users.xls") // 准备数据
+	@DataSet(value = "UserDao.Users.xls") // 准备数据
 	public void findUserByUsernameAndPassword() {
 
 		User user = userDao.selectByUsername("John");

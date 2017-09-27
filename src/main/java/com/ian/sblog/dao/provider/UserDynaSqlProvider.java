@@ -134,6 +134,9 @@ public class UserDynaSqlProvider {
 				if(user.getLastModifyAt() != null) {
 					VALUES("last_modify_at", "#{lastModifyAt}");
 				}
+				if(user.getCreateAt() != null) {
+					VALUES("create_at", "#{createAt}");
+				}
 			}
 		}.toString();
 	}
@@ -222,6 +225,9 @@ public class UserDynaSqlProvider {
 				}
 				if(user.getLastModifyAt() != null) {
 					SET("last_modify_at = #{lastModifyAt}");
+				}
+				if(user.getCreateAt() != null) {
+					SET("create_at = #{createAt}");
 				}
 				WHERE("id = #{id}");
 			}
