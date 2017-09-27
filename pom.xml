@@ -17,6 +17,7 @@
 
   <properties>
   	<java.version>1.8</java.version>
+      <unitils.version>3.4.2</unitils.version>
   </properties>
 
   <dependencies>
@@ -89,37 +90,37 @@
 	<dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-core</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-testng</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-spring</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-orm</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-database</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-dbmaintainer</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
     </dependency>
     <dependency>
         <groupId>org.unitils</groupId>
         <artifactId>unitils-dbunit</artifactId>
-        <version>3.4.2</version>
+        <version>${unitils.version}</version>
         <exclusions>
             <exclusion>
                 <groupId>org.dbunit</groupId>
