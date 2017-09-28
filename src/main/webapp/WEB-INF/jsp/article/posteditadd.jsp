@@ -30,7 +30,7 @@
 	}
 	
 	function pageInit(){
-		$('#content').xheditor({upLinkUrl:'/upload',upLinkExt:"zip,rar,txt",upImgUrl:'/upload',upImgExt:'jpg, jpeg,png,gif'});
+		$('#content').xheditor({upLinkUrl:'/upload/',upLinkExt:"zip,rar,txt",upImgUrl:'/upload',upImgExt:'jpg, jpeg,png,gif'});
 	}
 	
 </script>

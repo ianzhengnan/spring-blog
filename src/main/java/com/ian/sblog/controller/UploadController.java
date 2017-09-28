@@ -33,7 +33,7 @@ public class UploadController extends BaseController {
 				String disposition = request.getHeader("Content-Disposition");
 				fileName = disposition.replaceFirst("(?i).*filename=\"([^\"]+)\".*$", "$1");
 				String path = request.getServletContext().getRealPath("/upload/");
-				path += fileName;
+				path += "/" + fileName;
 				FileOutputStream outputStream = new FileOutputStream(new File(path));
 				
 				byte[] buffer = new byte[1024];
