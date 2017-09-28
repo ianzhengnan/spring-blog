@@ -14,8 +14,7 @@ import org.unitils.spring.annotation.SpringBeanByType;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
-@SpringApplicationContext({"classpath:springmvc-config.xml","classpath:applicationContext.xml",
-        "rest-template.xml"})
+@SpringApplicationContext({"classpath:springmvc-config.xml","classpath:applicationContext.xml"})
 public class PassportControllerTest2 extends UnitilsTestNG {
 
     @SpringBeanByType
@@ -35,7 +34,7 @@ public class PassportControllerTest2 extends UnitilsTestNG {
         String result = restTemplate.postForObject(
                 "http://localhost:8100/account/login", map, String.class
         );
-
+        // 如果是 mv.setViewName("redirect:../main"); 这里是拿不到返回值的，因为它没有状态了，要怎么样测试呢？
         Assert.assertNotNull(result);
         MatcherAssert.assertThat(result, containsString("Welcome"));
     }

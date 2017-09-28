@@ -41,7 +41,18 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean id="stringHttpMessageConverter"
+					  class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<bean id="formHttpMessageConverter"
+					  class="org.springframework.http.converter.FormHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
 	<bean id="multipartResolver" 
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 上传文件大小限制， 单位为字节(10MB) -->

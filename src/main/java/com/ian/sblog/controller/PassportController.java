@@ -28,7 +28,8 @@ public class PassportController extends BaseController{
 		User user = us.logon(username, password);
 		if (user != null) {
 			httpSession.setAttribute(SBlogConstants.USER_SESSION, user);
-			mv.setViewName("redirect:../main");
+//			mv.setViewName("redirect:../main");
+			mv.setViewName("main");
 		}else {
 			// 未来用message class替换
 			mv.addObject("message", "登录名和密码错误，请重新登录！");
