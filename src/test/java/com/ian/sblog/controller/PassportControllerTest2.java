@@ -15,7 +15,7 @@ import org.unitils.spring.annotation.SpringBeanByType;
 import static org.hamcrest.CoreMatchers.containsString;
 
 @SpringApplicationContext({"classpath:springmvc-config.xml","classpath:applicationContext.xml",
-        "classpath:rest-template.xml"})
+        "rest-template.xml"})
 public class PassportControllerTest2 extends UnitilsTestNG {
 
     @SpringBeanByType
@@ -33,7 +33,7 @@ public class PassportControllerTest2 extends UnitilsTestNG {
 
         // 发送客户端访问请求
         String result = restTemplate.postForObject(
-                "http://localhost:8080/account/login", map, String.class
+                "http://localhost:8100/account/login", map, String.class
         );
 
         Assert.assertNotNull(result);

@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLDecoder;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,9 +33,12 @@ public class UploadController extends BaseController {
 			
 			if (inputStream != null) {
 				String disposition = request.getHeader("Content-Disposition");
-				fileName = disposition.replaceFirst("(?i).*filename=\"([^\"]+)\".*$", "$1");
+				String file = disposition.replaceFirst("(?i).*filename=\"([^\"]+)\".*$", "$1");
+//				file = URLDecoder.decode(fileName, "utf-8");
+				String suffix = file.substring(file.indexOf("."));
+				fileName = UUID.randomUUID().toString() + suffix;
 				String path = request.getServletContext().getRealPath("/upload/");
-				path += "/" + fileName;
+				path += "\\" + fileName;
 				FileOutputStream outputStream = new FileOutputStream(new File(path));
 				
 				byte[] buffer = new byte[1024];
