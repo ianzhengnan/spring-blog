@@ -13,8 +13,8 @@ public class SendSMS {
     static final String product = "Dysmsapi";
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    static final String accessKeyId = "LTAI8ggXjOrEHYXI";
-    static final String accessKeySecret = "1pc9Dxi4N09It6j2hYYL93d8wU9P5c";
+    static final String accessKeyId = "";
+    static final String accessKeySecret = "";
 
     public static SendSmsResponse sendSms(String phone, String smscode) throws ClientException{
 
